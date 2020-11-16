@@ -10,6 +10,10 @@ pipeline {
     }
 
     stage('Deploy') {
+      agent any
+      environment {
+        JBOSS_DEPLOYMENT_DIR = '/home/usltrdx/jboss-eap-7.2/standalone/deployments'
+      }
       steps {
         echo 'Starting deployment'
         echo 'Copying artifact to ${JBOSS_DEPLOYMENT_DIR}'
@@ -19,5 +23,8 @@ pipeline {
   }
   tools {
     maven 'maven'
+  }
+  environment {
+    JBOSS_DEPLOYMENT_DIR = '/home/usltrdx/jboss-eap-7.2/standalone/deployments'
   }
 }
